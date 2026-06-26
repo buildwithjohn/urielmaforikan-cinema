@@ -99,7 +99,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Why film"
               title="Light into dark is the whole idea."
-              description="It's our look — gold shafts drifting through deep navy — but it's also our theology. Christ is the light that the darkness has never overcome. Film is simply our way of carrying a little of that light into a dark room, and trusting it to do what light does."
+              description="It's our look — gold light drifting through the black — but it's also our theology. Christ is the light that the darkness has never overcome. Film is simply our way of carrying a little of that light into a dark room, and trusting it to do what light does."
             />
             <p className="mt-4 leading-relaxed text-cream-dim">
               We are not trying to make people watch forever. We are trying to make
