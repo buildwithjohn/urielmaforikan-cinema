@@ -71,8 +71,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-display)", "Cormorant Garamond", "Georgia", "serif"],
-        sans: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
+        serif: ["var(--font-display)", "Fraunces", "Georgia", "serif"],
+        sans: ["var(--font-body)", "Hanken Grotesk", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

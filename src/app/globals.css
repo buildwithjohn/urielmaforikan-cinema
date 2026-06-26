@@ -48,7 +48,8 @@
   }
   h1, h2, h3, h4, .font-display {
     @apply font-serif;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: -0.015em;
   }
   /* Accessible focus — gold ring on dark */
   :focus-visible {

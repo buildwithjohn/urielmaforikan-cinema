@@ -3,6 +3,7 @@
 // regenerate with `supabase gen types typescript` when the schema grows.
 
 export type FilmStatus = "coming_soon" | "now_showing" | "archive";
+export type VideoSource = "mux" | "youtube";
 export type CreditRole = "cast" | "crew";
 export type AccessTier = "free" | "registered" | "supporter";
 export type PremiereStatus = "scheduled" | "live" | "ended" | "canceled";
@@ -20,7 +21,8 @@ export interface Film {
   poster_url: string | null;
   backdrop_url: string | null;
   trailer_ref: string | null; // YouTube id / Mux playback id for trailer
-  video_ref: string | null; // Mux playback id (signed) for the feature
+  video_source: VideoSource; // where the feature plays from
+  video_ref: string | null; // Mux playback id (signed) OR YouTube id
   duration_seconds: number | null;
   release_date: string | null;
   required_tier: AccessTier;

@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 
-const display = Cormorant_Garamond({
+// Display: Fraunces — a warm, literary "old-style" serif with real character.
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Inter({
+// Body/UI: Hanken Grotesk — a humanist grotesque, clean but not generic.
+const body = Hanken_Grotesk({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });

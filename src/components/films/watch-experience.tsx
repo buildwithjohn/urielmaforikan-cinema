@@ -2,18 +2,23 @@
 
 import { useRef, useState } from "react";
 import { CinemaPlayer } from "./cinema-player";
+import { YouTubePlayer } from "./youtube-player";
 import { RespondSection } from "./respond-section";
 import type { PlaybackToken } from "@/lib/video/types";
 import { ChevronDown } from "lucide-react";
 
+type Media =
+  | { kind: "mux"; token: PlaybackToken }
+  | { kind: "youtube"; youtubeId: string };
+
 /** Player + post-roll hand-off. The response prompt fades in when the film ends. */
 export function WatchExperience({
-  token,
+  media,
   filmId,
   title,
   responseContent,
 }: {
-  token: PlaybackToken;
+  media: Media;
   filmId: string;
   title: string;
   responseContent?: string | null;
@@ -21,20 +26,25 @@ export function WatchExperience({
   const [ended, setEnded] = useState(false);
   const respondRef = useRef<HTMLDivElement>(null);
 
+  const handleEnded = () => {
+    setEnded(true);
+    setTimeout(
+      () => respondRef.current?.scrollIntoView({ behavior: "smooth" }),
+      400,
+    );
+  };
+
   return (
     <div className="space-y-10">
-      <CinemaPlayer
-        token={token}
-        title={title}
-        onEnded={() => {
-          setEnded(true);
-          // gently bring the hand-off into view
-          setTimeout(
-            () => respondRef.current?.scrollIntoView({ behavior: "smooth" }),
-            400,
-          );
-        }}
-      />
+      {media.kind === "mux" ? (
+        <CinemaPlayer token={media.token} title={title} onEnded={handleEnded} />
+      ) : (
+        <YouTubePlayer
+          youtubeId={media.youtubeId}
+          title={title}
+          onEnded={handleEnded}
+        />
+      )}
 
       {!ended && (
         <p className="flex items-center justify-center gap-2 text-sm text-cream-muted">

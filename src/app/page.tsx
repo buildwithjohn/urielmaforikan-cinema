@@ -9,7 +9,7 @@ import { FilmCard } from "@/components/films/film-card";
 import { JoinAudienceForm } from "@/components/site/join-audience-form";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Play, Compass, Eye, HandHeart } from "lucide-react";
+import { Play, Compass, Eye, HandHeart, ArrowRight, Clapperboard } from "lucide-react";
 
 export default async function HomePage() {
   const [featured, nowShowing] = await Promise.all([
@@ -43,15 +43,37 @@ export default async function HomePage() {
             </p>
 
             {featured && (
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Button asChild size="lg">
-                  <Link href={`/films/${featured.slug}`}>
-                    <Play /> Watch {featured.title}
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/premieres">See upcoming premieres</Link>
-                </Button>
+              <div className="mt-10">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Button asChild size="lg" className="group">
+                    <Link href={`/films/${featured.slug}`}>
+                      {featured.status === "now_showing" && featured.video_ref ? (
+                        <>
+                          <Play className="transition-transform group-hover:scale-110" />
+                          Watch {featured.title}
+                        </>
+                      ) : (
+                        <>
+                          <Clapperboard />
+                          Discover {featured.title}
+                          <ArrowRight className="transition-transform group-hover:translate-x-1" />
+                        </>
+                      )}
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="/films">Browse the cinema</Link>
+                  </Button>
+                </div>
+                {featured.status === "coming_soon" && (
+                  <p className="mt-4 text-sm text-cream-muted">
+                    <span className="text-gold">In production.</span>{" "}
+                    <Link href="/#join" className="underline-offset-4 hover:text-cream hover:underline">
+                      Join the audience
+                    </Link>{" "}
+                    to be first through the doors.
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -73,11 +95,20 @@ export default async function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 to-transparent" />
                 <div className="absolute bottom-0 p-6">
                   <Badge variant="solid" className="mb-3">
-                    Featured Film
+                    {featured.status === "coming_soon"
+                      ? "In Production"
+                      : featured.status === "archive"
+                        ? "From the Archive"
+                        : "Featured Film"}
                   </Badge>
                   <h2 className="font-serif text-3xl text-cream">
                     {featured.title}
                   </h2>
+                  {featured.logline && (
+                    <p className="mt-2 max-w-xs text-sm text-cream-dim">
+                      {featured.logline}
+                    </p>
+                  )}
                 </div>
               </div>
             </Link>

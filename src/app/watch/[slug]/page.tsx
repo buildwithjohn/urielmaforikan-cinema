@@ -34,15 +34,19 @@ export default async function WatchPage({
     redirect(`/films/${slug}`);
   }
 
-  // ── Mint a signed playback token (provider-agnostic) ────────
+  const isYouTube = film.video_source === "youtube";
+
+  // ── Mint a signed playback token for Mux features ───────────
   let token: PlaybackToken | null = null;
   let tokenError: string | null = null;
-  try {
-    token = await getPlaybackToken(film.video_ref);
-  } catch (err) {
-    tokenError =
-      err instanceof Error ? err.message : "Could not start playback.";
-    console.error("[watch] token error", err);
+  if (!isYouTube) {
+    try {
+      token = await getPlaybackToken(film.video_ref);
+    } catch (err) {
+      tokenError =
+        err instanceof Error ? err.message : "Could not start playback.";
+      console.error("[watch] token error", err);
+    }
   }
 
   return (
@@ -55,9 +59,16 @@ export default async function WatchPage({
 
       <h1 className="mb-6 font-serif text-3xl text-cream">{film.title}</h1>
 
-      {token ? (
+      {isYouTube ? (
         <WatchExperience
-          token={token}
+          media={{ kind: "youtube", youtubeId: film.video_ref }}
+          filmId={film.id}
+          title={film.title}
+          responseContent={film.response_content}
+        />
+      ) : token ? (
+        <WatchExperience
+          media={{ kind: "mux", token }}
           filmId={film.id}
           title={film.title}
           responseContent={film.response_content}

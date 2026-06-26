@@ -92,7 +92,21 @@ export function FilmForm({ film }: { film?: Film }) {
           <Input id="trailer_ref" name="trailer_ref" defaultValue={film?.trailer_ref ?? ""} />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="video_ref">Video ref (signed playback id)</Label>
+          <Label htmlFor="video_source">Video source</Label>
+          <select
+            id="video_source"
+            name="video_source"
+            defaultValue={film?.video_source ?? "mux"}
+            className={fieldCls}
+          >
+            <option value="mux">Mux — signed feature (upload above)</option>
+            <option value="youtube">YouTube — public short / series</option>
+          </select>
+        </div>
+        <div className="space-y-1.5 sm:col-span-2">
+          <Label htmlFor="video_ref">
+            Video ref — Mux playback id, or YouTube id for YouTube source
+          </Label>
           <Input id="video_ref" name="video_ref" defaultValue={film?.video_ref ?? ""} />
         </div>
       </div>
