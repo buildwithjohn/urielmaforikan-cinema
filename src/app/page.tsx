@@ -26,7 +26,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
         <LightShafts density={4} />
 
-        <div className="container relative grid min-h-[88vh] items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="container relative grid items-center gap-10 py-16 sm:py-20 lg:min-h-[88vh] lg:grid-cols-[1.15fr_0.85fr]">
           <div className="animate-fade-up">
             <div className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold">
               <span className="h-px w-10 bg-gold/50" />
@@ -82,7 +82,7 @@ export default async function HomePage() {
           {featured?.poster_url && (
             <Link
               href={`/films/${featured.slug}`}
-              className="group relative mx-auto hidden w-full max-w-sm lg:block"
+              className="group relative mx-auto block w-full max-w-[15rem] sm:max-w-xs lg:max-w-sm"
             >
               <div className="relative aspect-[2/3] overflow-hidden rounded-xl border border-gold/20 shadow-poster">
                 <Image
