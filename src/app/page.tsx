@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedFilm, getFilms } from "@/lib/data/films";
 import { LightShafts } from "@/components/brand/light-shafts";
+import { HeroBackdrop } from "@/components/brand/hero-backdrop";
+import { Reveal, RevealGroup, RevealItem } from "@/components/brand/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { FilmCard } from "@/components/films/film-card";
 import { JoinAudienceForm } from "@/components/site/join-audience-form";
@@ -19,17 +21,9 @@ export default async function HomePage() {
     <>
       {/* ── Cinematic hero ──────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden">
-        {featured?.backdrop_url && (
-          <Image
-            src={featured.backdrop_url}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-25"
-          />
-        )}
+        <HeroBackdrop imageSrc={featured?.backdrop_url} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/85 to-navy-deep" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_30%,rgba(10,15,29,0.7)_100%)]" />
         <LightShafts density={4} />
 
         <div className="container relative grid min-h-[88vh] items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr]">
@@ -105,11 +99,13 @@ export default async function HomePage() {
         </div>
 
         {nowShowing.length > 0 ? (
-          <div className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+          <RevealGroup className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
             {nowShowing.map((film) => (
-              <FilmCard key={film.id} film={film} />
+              <RevealItem key={film.id}>
+                <FilmCard film={film} />
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         ) : (
           <p className="mt-10 text-cream-muted">
             No films are open right now — a premiere is on the way.
@@ -126,7 +122,7 @@ export default async function HomePage() {
             title="We make films the way evangelists carry cameras."
             className="md:col-span-1"
           />
-          <div className="grid gap-8 md:col-span-2 sm:grid-cols-2">
+          <RevealGroup className="grid gap-8 md:col-span-2 sm:grid-cols-2">
             {[
               {
                 icon: Compass,
@@ -149,8 +145,8 @@ export default async function HomePage() {
                 body: "We gather people to watch together — premieres that open at a set hour, so the whole audience meets the story at once.",
               },
             ].map(({ icon: Icon, title, body }) => (
-              <div key={title} className="flex gap-4">
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/5">
+              <RevealItem key={title} className="flex gap-4">
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/5 transition-transform duration-300 hover:scale-110 hover:border-gold/60">
                   <Icon className="size-5 text-gold" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -159,15 +155,15 @@ export default async function HomePage() {
                     {body}
                   </p>
                 </div>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
       {/* ── Join the audience ───────────────────────────────────── */}
       <section id="join" className="container py-24">
-        <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-gold/20 bg-navy p-8 sm:p-12">
+        <Reveal className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-gold/20 bg-navy p-8 shadow-glow sm:p-12">
           <LightShafts density={2} />
           <div className="relative">
             <SectionHeading
@@ -179,7 +175,7 @@ export default async function HomePage() {
               <JoinAudienceForm />
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );
