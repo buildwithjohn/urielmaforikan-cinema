@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* The cinema is dark by nature — light into dark is the brand. */
+    --background: 222 47% 7%; /* navy.deep #0a0f1d */
+    --foreground: 43 38% 93%; /* cream #f4efe4 */
+
+    --card: 222 43% 11%; /* navy #0d1426 */
+    --card-foreground: 43 38% 93%;
+
+    --popover: 222 43% 9%;
+    --popover-foreground: 43 38% 93%;
+
+    --primary: 38 53% 54%; /* gold #c79a4b */
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 222 35% 18%;
+    --secondary-foreground: 43 38% 93%;
+
+    --muted: 222 30% 16%;
+    --muted-foreground: 43 14% 66%;
+
+    --accent: 38 60% 70%; /* gold.light #e0c483 */
+    --accent-foreground: 222 47% 7%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 43 38% 93%;
+
+    --border: 222 28% 20%;
+    --input: 222 28% 20%;
+    --ring: 38 53% 54%;
+
+    --radius: 0.6rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display {
+    @apply font-serif;
+    letter-spacing: -0.01em;
+  }
+  /* Accessible focus — gold ring on dark */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-navy-deep;
+  }
+  ::selection {
+    background: rgba(199, 154, 75, 0.3);
+    color: #f4efe4;
+  }
+}
+
+@layer components {
+  /* Gold gradient text for titles */
+  .text-gilded {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(180deg, #e0c483 0%, #c79a4b 60%, #a87f37 100%);
+  }
+
+  /* Light shaft — a single drifting beam. Composed in the LightShafts component. */
+  .light-shaft {
+    position: absolute;
+    top: -20%;
+    width: 22vw;
+    height: 140%;
+    background: linear-gradient(
+      180deg,
+      rgba(224, 196, 131, 0) 0%,
+      rgba(224, 196, 131, 0.12) 35%,
+      rgba(199, 154, 75, 0.18) 55%,
+      rgba(224, 196, 131, 0) 100%
+    );
+    filter: blur(28px);
+    transform-origin: top center;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .card-gold-edge {
+    @apply relative overflow-hidden rounded-xl border border-gold/15 bg-navy/60;
+    transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .card-gold-edge:hover {
+    @apply border-gold/40 shadow-glow;
+    transform: translateY(-3px);
+  }
+}
+
+/* Honor reduced-motion everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .light-shaft {
+    opacity: 0.18 !important;
+  }
+}
