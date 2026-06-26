@@ -55,7 +55,8 @@ export const muxProvider: VideoProvider = {
       cors_origin: opts?.corsOrigin ?? process.env.NEXT_PUBLIC_SITE_URL ?? "*",
       new_asset_settings: {
         playback_policy: ["signed"],
-        encoding_tier: "smart",
+        // link the resulting asset back to its film row (read in the webhook)
+        passthrough: opts?.passthrough,
       },
     });
     return {

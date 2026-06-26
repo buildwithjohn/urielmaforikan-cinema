@@ -31,6 +31,20 @@ export const metadata: Metadata = {
     title: "Uriel Maforikan Productions",
     description: "Evangelists who carry cameras.",
     type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Uriel Maforikan Productions — Light into dark.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Uriel Maforikan Productions",
+    description: "Evangelists who carry cameras.",
+    images: ["/api/og"],
   },
 };
 

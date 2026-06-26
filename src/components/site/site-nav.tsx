@@ -2,11 +2,12 @@ import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
 import { Button } from "@/components/ui/button";
 import { getViewer, isAdmin } from "@/lib/auth";
-import { Film, Clapperboard, Heart, ShieldCheck } from "lucide-react";
+import { Film, Clapperboard, Heart, ShieldCheck, Sparkles } from "lucide-react";
 
 const links = [
   { href: "/films", label: "Films", icon: Film },
   { href: "/premieres", label: "Premieres", icon: Clapperboard },
+  { href: "/about", label: "About", icon: Sparkles },
   { href: "/giving", label: "Give", icon: Heart },
 ];
 

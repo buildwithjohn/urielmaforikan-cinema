@@ -23,6 +23,9 @@ export function SiteFooter() {
           <Link href="/premieres" className="text-cream/70 hover:text-cream">
             Premieres
           </Link>
+          <Link href="/about" className="text-cream/70 hover:text-cream">
+            About the ministry
+          </Link>
           <Link href="/giving" className="text-cream/70 hover:text-cream">
             Partner with us
           </Link>

@@ -20,13 +20,32 @@ export async function generateMetadata({
   const { slug } = await params;
   const film = await getFilmBySlug(slug);
   if (!film) return { title: "Film not found" };
+
+  const statusLabel =
+    film.status === "now_showing"
+      ? "Now Showing"
+      : film.status === "coming_soon"
+        ? "Coming Soon"
+        : "From the Archive";
+  const ogImage = `/api/og?title=${encodeURIComponent(
+    film.title,
+  )}&subtitle=${encodeURIComponent(film.logline ?? "")}&badge=${encodeURIComponent(
+    statusLabel,
+  )}`;
+
   return {
     title: film.title,
     description: film.logline ?? film.synopsis ?? undefined,
     openGraph: {
       title: film.title,
       description: film.logline ?? undefined,
-      images: film.poster_url ? [film.poster_url] : undefined,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: film.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: film.title,
+      description: film.logline ?? undefined,
+      images: [ogImage],
     },
   };
 }

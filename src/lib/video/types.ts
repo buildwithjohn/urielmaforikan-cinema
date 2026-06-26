@@ -33,6 +33,10 @@ export interface VideoProvider {
     videoRef: string,
     opts?: { audience?: "video" | "thumbnail" | "gif"; ttlSeconds?: number },
   ): Promise<PlaybackToken>;
-  /** Create a direct-upload ticket for the admin to push a new master file. */
-  getUploadUrl(opts?: { corsOrigin?: string }): Promise<UploadTicket>;
+  /** Create a direct-upload ticket for the admin to push a new master file.
+   *  `passthrough` is echoed back on the asset webhook to link it to a film. */
+  getUploadUrl(opts?: {
+    corsOrigin?: string;
+    passthrough?: string;
+  }): Promise<UploadTicket>;
 }
