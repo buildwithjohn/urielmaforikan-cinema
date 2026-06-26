@@ -1,4 +1,5 @@
 import { upsertFilm } from "@/app/actions/admin";
+import { ArtUploader } from "@/components/admin/art-uploader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -78,15 +79,24 @@ export function FilmForm({ film }: { film?: Film }) {
         </div>
       </div>
 
+      <div className="grid gap-6 sm:grid-cols-2">
+        <ArtUploader
+          name="poster_url"
+          kind="poster"
+          label="Poster (portrait, 2:3)"
+          defaultValue={film?.poster_url}
+          aspect="aspect-[2/3]"
+        />
+        <ArtUploader
+          name="backdrop_url"
+          kind="backdrop"
+          label="Backdrop (landscape, 16:9)"
+          defaultValue={film?.backdrop_url}
+          aspect="aspect-video"
+        />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
-          <Label htmlFor="poster_url">Poster URL</Label>
-          <Input id="poster_url" name="poster_url" defaultValue={film?.poster_url ?? ""} />
-        </div>
-        <div className="space-y-1.5">
-          <Label htmlFor="backdrop_url">Backdrop URL</Label>
-          <Input id="backdrop_url" name="backdrop_url" defaultValue={film?.backdrop_url ?? ""} />
-        </div>
         <div className="space-y-1.5">
           <Label htmlFor="trailer_ref">Trailer ref (YouTube id)</Label>
           <Input id="trailer_ref" name="trailer_ref" defaultValue={film?.trailer_ref ?? ""} />

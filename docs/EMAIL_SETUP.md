@@ -113,6 +113,56 @@ These send from the same verified domain. If `RESEND_API_KEY` is unset, the app 
 
 ---
 
+## Part F — Testing email NOW, before you own a domain
+
+You don't need a verified domain to start testing. Three options, easiest first:
+
+### Option 1 — Use what already works (zero setup)
+Supabase's **built-in mailer already sends** magic-link / confirm emails (that's
+the plain "powered by Supabase" message you saw). It's enough to test sign-in
+today. **The only missing piece is the redirect URL** — do Part D and you can log
+in on the live site right now. The email looks generic, but the flow works.
+
+### Option 2 — Gmail as a stub sender (real branded emails to anyone)
+Use any Gmail account as the SMTP relay. Sends look like they come from that
+Gmail address — perfect for testing until the real domain is ready.
+
+1. On the Google account, enable **2-Step Verification**, then create an
+   **App Password** (Google Account → Security → App passwords).
+2. In **Supabase → Project Settings → Authentication → SMTP**, enter:
+
+   | Field | Value |
+   |-------|-------|
+   | Host | `smtp.gmail.com` |
+   | Port | `465` |
+   | Username | `your.stub@gmail.com` |
+   | Password | *the 16-char App Password* |
+   | Sender email | `your.stub@gmail.com` |
+   | Sender name | `Uriel Maforikan Productions (Test)` |
+
+3. Now paste the branded template from Part C — you get the full styled email,
+   from a normal Gmail address, to **any** recipient. Swap to your domain later by
+   only changing host/credentials.
+
+> Gmail caps at ~500 sends/day — plenty for testing, not for a launch blast.
+
+### Option 3 — Resend test mode (for the app's own emails)
+For the welcome / premiere emails (the Resend ones, not auth): create a Resend
+API key and leave `RESEND_FROM` as `onboarding@resend.dev`. In test mode Resend
+**only delivers to your own Resend signup email** — so sign up to Resend with the
+inbox you'll test from. Good enough to see the welcome email land.
+
+### Throwaway inboxes for *receiving* test mail
+To test as a "new viewer" without using personal inboxes, use a disposable
+address from **mailinator.com**, **temp-mail.org**, or Gmail's `+tag` trick
+(`youraddress+test1@gmail.com` all arrive in your inbox).
+
+> **Recommended stub for you right now:** Option 2 (Gmail App Password) — it gives
+> the real branded experience to any address, and migrating to the domain later is
+> a one-field change.
+
+---
+
 ## Quick checklist
 - [ ] Resend domain verified (DNS records added)
 - [ ] Supabase Custom SMTP → Resend
