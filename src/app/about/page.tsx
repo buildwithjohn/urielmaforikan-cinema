@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { LightShafts } from "@/components/brand/light-shafts";
 import { Reveal, RevealGroup, RevealItem } from "@/components/brand/reveal";
 import { IllustrationSlot } from "@/components/brand/illustration-slot";
@@ -106,6 +107,49 @@ export default function AboutPage() {
               lights come up, there is a next step waiting, and a real person to
               take it with.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── The Founder ──────────────────────────────────────────── */}
+      <section className="container py-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1fr]">
+          <Reveal>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-gold/20 shadow-poster">
+              <Image
+                src="/team/uriel-maforikan.jpg"
+                alt="Uriel Maforikan, founder and director"
+                fill
+                sizes="(max-width: 1024px) 90vw, 400px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent" />
+            </div>
+          </Reveal>
+
+          <Reveal direction="left">
+            <SectionHeading
+              eyebrow="The Founder"
+              title="Uriel Maforikan"
+              description="Founder and director of the ministry — an evangelist who carries a camera. He makes films to carry the gospel into rooms a sermon may never reach, and stays to walk with everyone the story moves."
+            />
+            <p className="mt-6 border-l-2 border-gold/40 pl-5 font-serif text-xl italic leading-relaxed text-gold-light">
+              “We don&apos;t make films to be watched. We make them to be answered.”
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button asChild variant="outline">
+                <Link href="mailto:hello@urielmaforikan.org">Get in touch</Link>
+              </Button>
+              <Button asChild variant="ghost">
+                <a
+                  href="https://www.youtube.com/@urielmaforikan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Watch on YouTube →
+                </a>
+              </Button>
+            </div>
           </Reveal>
         </div>
       </section>

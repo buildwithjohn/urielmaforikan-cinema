@@ -1,7 +1,7 @@
 // Plain, dependency-free HTML email templates in the brand palette.
 // Kept inline (no React Email) so the email layer has zero render deps.
 
-const NAVY = "#0a0f1d";
+const NAVY = "#000000";
 const GOLD = "#c79a4b";
 const CREAM = "#f4efe4";
 

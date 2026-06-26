@@ -23,7 +23,7 @@ export default async function HomePage() {
       <section className="relative isolate overflow-hidden">
         <HeroBackdrop imageSrc={featured?.backdrop_url} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/85 to-navy-deep" />
-        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_30%,rgba(10,15,29,0.7)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
         <LightShafts density={4} />
 
         <div className="container relative grid min-h-[88vh] items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr]">

@@ -3,8 +3,8 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 // Brand palette
-const NAVY = "#0a0f1d";
-const NAVY2 = "#0d1426";
+const NAVY = "#000000";
+const NAVY2 = "#0c0c0d";
 const GOLD = "#c79a4b";
 const GOLD_LIGHT = "#e0c483";
 const CREAM = "#f4efe4";

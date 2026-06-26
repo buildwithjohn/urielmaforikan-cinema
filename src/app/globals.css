@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    /* The cinema is dark by nature — light into dark is the brand. */
-    --background: 222 47% 7%; /* navy.deep #0a0f1d */
+    /* True black cinema — light into dark, no blue cast. */
+    --background: 0 0% 0%; /* real black */
     --foreground: 43 38% 93%; /* cream #f4efe4 */
 
-    --card: 222 43% 11%; /* navy #0d1426 */
+    --card: 240 4% 5%; /* #0c0c0d */
     --card-foreground: 43 38% 93%;
 
-    --popover: 222 43% 9%;
+    --popover: 0 0% 3%;
     --popover-foreground: 43 38% 93%;
 
     --primary: 38 53% 54%; /* gold #c79a4b */
-    --primary-foreground: 222 47% 7%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 222 35% 18%;
+    --secondary: 240 4% 11%;
     --secondary-foreground: 43 38% 93%;
 
-    --muted: 222 30% 16%;
-    --muted-foreground: 43 14% 66%;
+    --muted: 240 4% 9%;
+    --muted-foreground: 43 10% 64%;
 
     --accent: 38 60% 70%; /* gold.light #e0c483 */
-    --accent-foreground: 222 47% 7%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62% 45%;
     --destructive-foreground: 43 38% 93%;
 
-    --border: 222 28% 20%;
-    --input: 222 28% 20%;
+    --border: 240 4% 15%;
+    --input: 240 4% 15%;
     --ring: 38 53% 54%;
 
     --radius: 0.6rem;

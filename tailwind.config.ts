@@ -15,14 +15,15 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Brand palette — light into dark
+        // Brand base — true black, cinema-grade (Netflix/HBO feel).
+        // Key kept as `navy` so existing bg-navy* classes cascade unchanged.
         navy: {
-          DEFAULT: "#0d1426",
-          deep: "#0a0f1d",
-          900: "#0a0f1d",
-          800: "#0d1426",
-          700: "#131c33",
-          600: "#1b2742",
+          DEFAULT: "#0c0c0d", // surfaces / cards
+          deep: "#000000", // page base — real black
+          900: "#000000",
+          800: "#0c0c0d",
+          700: "#161617",
+          600: "#202022",
         },
         gold: {
           DEFAULT: "#c79a4b",

@@ -74,10 +74,10 @@ export function FilmUploader({
           style={
             {
               // Brand the uploader to match the studio.
-              "--uploader-background-color": "#0a0f1d",
+              "--uploader-background-color": "#000000",
               "--uploader-font-color": "#f4efe4",
               "--button-background-color": "#c79a4b",
-              "--button-color": "#0a0f1d",
+              "--button-color": "#000000",
               "--progress-bar-fill-color": "#c79a4b",
               borderRadius: "12px",
               border: "1px solid rgba(199,154,75,0.2)",
